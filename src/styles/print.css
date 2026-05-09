@@ -1,0 +1,45 @@
+/* Print-specific overrides. Applied via @media print. */
+
+@media print {
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  #root, #root > * {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure images don't overflow pages */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Avoid page breaks inside these elements */
+  pre,
+  blockquote,
+  table,
+  figure,
+  .katex-display {
+    page-break-inside: avoid !important;
+  }
+
+  /* Headings shouldn't be orphaned at the bottom of a page */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+  }
+
+  /* Show full URLs for links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  /* Don't show URL for internal anchor links */
+  a[href^="#"]::after {
+    content: "";
+  }
+}

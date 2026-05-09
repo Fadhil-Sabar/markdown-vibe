@@ -1,0 +1,228 @@
+/* Preview content styles — scoped to .preview-content */
+
+.preview-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.preview-content h1,
+.preview-content h2,
+.preview-content h3,
+.preview-content h4,
+.preview-content h5,
+.preview-content h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.preview-content h1:first-child,
+.preview-content h2:first-child,
+.preview-content h3:first-child {
+  margin-top: 0;
+}
+
+.preview-content h1 {
+  font-size: 2em;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75em;
+}
+.preview-content h2 {
+  font-size: 1.5em;
+  letter-spacing: -0.02em;
+}
+.preview-content h3 { font-size: 1.17em; }
+.preview-content h4 { font-size: 1em; }
+.preview-content h5 { font-size: 0.83em; }
+.preview-content h6 { font-size: 0.67em; color: #71717a; }
+
+.dark .preview-content h6 { color: #a1a1aa; }
+
+.preview-content p {
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+.preview-content a {
+  color: #4f46e5;
+  text-decoration: none;
+  border-bottom: 1px solid #c7d2fe;
+  transition: border-bottom-color 0.15s;
+}
+.preview-content a:hover {
+  border-bottom-color: #4f46e5;
+}
+.dark .preview-content a {
+  color: #818cf8;
+  border-bottom-color: #3730a3;
+}
+.dark .preview-content a:hover {
+  border-bottom-color: #818cf8;
+}
+
+.preview-content strong { font-weight: 700; }
+.preview-content em { font-style: italic; }
+.preview-content del { text-decoration: line-through; }
+
+.preview-content ul,
+.preview-content ol {
+  padding-left: 2em;
+  margin-bottom: 0.75em;
+}
+
+.preview-content ul { list-style: disc; }
+.preview-content ol { list-style: decimal; }
+.preview-content ul ul { list-style: circle; }
+.preview-content ul ul ul { list-style: square; }
+
+.preview-content li { margin-bottom: 0.25em; }
+
+/* Task lists */
+.preview-content .task-list-item {
+  list-style: none;
+  margin-left: -1.5em;
+}
+.preview-content .task-list-item input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: #4f46e5;
+}
+
+.preview-content blockquote {
+  border-left: 3px solid #e4e4e7;
+  padding: 0.6em 1em;
+  margin: 0 0 0.75em 0;
+  color: #71717a;
+  background: #fafafa;
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+.dark .preview-content blockquote {
+  border-left-color: #3f3f46;
+  background: #18181b;
+  color: #a1a1aa;
+}
+
+.preview-content code {
+  font-size: 0.875em;
+  background: #f4f4f5;
+  color: #be185d;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.dark .preview-content code {
+  background: #27272a;
+  color: #f472b6;
+}
+
+.preview-content pre {
+  background: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  padding: 1em;
+  overflow-x: auto;
+  margin-bottom: 0.75em;
+}
+.dark .preview-content pre {
+  background: #27272a;
+  border-color: #3f3f46;
+}
+
+.preview-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.875em;
+  color: inherit;
+}
+
+/* highlight.js overrides inside preview */
+.preview-content .hljs {
+  background: #f4f4f5;
+  color: #24292f;
+  border-radius: 8px;
+}
+.dark .preview-content .hljs {
+  background: #27272a;
+  color: #e6edf3;
+}
+
+.preview-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0.75em;
+  overflow: auto;
+  display: block;
+}
+
+.preview-content table thead {
+  background: #fafafa;
+}
+.dark .preview-content table thead {
+  background: #27272a;
+}
+
+.preview-content th,
+.preview-content td {
+  border: 1px solid #e4e4e7;
+  padding: 6px 12px;
+  text-align: left;
+}
+.dark .preview-content th,
+.dark .preview-content td {
+  border-color: #3f3f46;
+}
+
+.preview-content tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+.dark .preview-content tbody tr:nth-child(even) {
+  background: #18181b;
+}
+
+.preview-content hr {
+  border: none;
+  border-top: 1px solid #e4e4e7;
+  margin: 1.5em 0;
+}
+.dark .preview-content hr {
+  border-top-color: #3f3f46;
+}
+
+.preview-content img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+/* KaTeX math */
+.preview-content .math-block {
+  overflow-x: auto;
+  text-align: center;
+  margin: 1em 0;
+}
+.preview-content .math-error {
+  color: #dc2626;
+  background: #fef2f2;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.85em;
+}
+.dark .preview-content .math-error {
+  color: #f87171;
+  background: #2d1515;
+}
+
+/* Print preview page break indicators */
+.preview-content.print-preview-mode {
+  background: #e4e4e7;
+  padding: 0;
+}
+.dark .preview-content.print-preview-mode {
+  background: #3f3f46;
+}
+
+/* KaTeX CSS variable override for dark mode */
+.dark .preview-content .katex {
+  color: #e6edf3;
+}
