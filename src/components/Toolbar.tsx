@@ -38,7 +38,7 @@ function IconButton({
       title={title}
       disabled={disabled}
       className={`
-        p-1.5 rounded-md transition-colors
+        p-2 sm:p-1.5 rounded-md transition-colors
         ${active
           ? activeClassName || 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'
           : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'
@@ -73,10 +73,10 @@ export default function Toolbar() {
 
   const { newFile, openFile, saveFile, saveAsFile } = useFileSystem()
 
-  const viewSegments: { mode: ViewMode; label: string; title: string }[] = [
-    { mode: 'editor', label: 'Editor', title: 'Editor only' },
-    { mode: 'split', label: 'Split', title: 'Split view' },
-    { mode: 'preview', label: 'Preview', title: 'Preview only' },
+  const viewSegments: { mode: ViewMode; label: string; shortLabel: string; title: string }[] = [
+    { mode: 'editor', label: 'Editor', shortLabel: 'E', title: 'Editor only' },
+    { mode: 'split', label: 'Split', shortLabel: 'S', title: 'Split view' },
+    { mode: 'preview', label: 'Preview', shortLabel: 'P', title: 'Preview only' },
   ]
 
   async function handleCopyRichText() {
@@ -98,7 +98,7 @@ export default function Toolbar() {
   }
 
   return (
-    <div className="h-11 flex items-center px-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex-shrink-0 min-w-0">
+    <div className="h-11 flex items-center px-2 sm:px-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex-shrink-0 min-w-0">
       {/* Left: File operations */}
       <div className="flex items-center gap-0.5">
         <IconButton onClick={newFile} title="New file (Ctrl+Shift+N)">
@@ -110,9 +110,11 @@ export default function Toolbar() {
         <IconButton onClick={saveFile} title="Save (Ctrl+S)">
           <Save size={15} />
         </IconButton>
-        <IconButton onClick={saveAsFile} title="Save As (Ctrl+Shift+S)">
-          <SaveAll size={15} />
-        </IconButton>
+        <span className="hidden sm:contents">
+          <IconButton onClick={saveAsFile} title="Save As (Ctrl+Shift+S)">
+            <SaveAll size={15} />
+          </IconButton>
+        </span>
       </div>
 
       <Divider />
@@ -120,18 +122,19 @@ export default function Toolbar() {
       {/* Center: View toggle segmented control */}
       <div className="flex items-center gap-2">
         <div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-0.5 flex gap-0.5">
-          {viewSegments.map(({ mode, label, title }) => (
+          {viewSegments.map(({ mode, label, shortLabel, title }) => (
             <button
               key={mode}
               onClick={() => setViewMode(mode)}
               title={title}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+              className={`px-2 sm:px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                 viewMode === mode
                   ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 shadow-sm'
                   : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300'
               }`}
             >
-              {label}
+              <span className="sm:hidden">{shortLabel}</span>
+              <span className="hidden sm:inline">{label}</span>
             </button>
           ))}
         </div>
@@ -156,7 +159,7 @@ export default function Toolbar() {
         >
           <span className="flex items-center gap-1.5">
             <FileDown size={13} />
-            Export PDF
+            <span className="hidden sm:inline">Export PDF</span>
           </span>
         </button>
 

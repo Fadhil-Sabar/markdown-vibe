@@ -81,10 +81,11 @@ export default function Preview({ className = '' }: PreviewProps) {
       className={`h-full overflow-auto ${printPreviewMode ? 'bg-zinc-200 dark:bg-zinc-700 p-8' : 'p-0'} ${className}`}
     >
       <style>{headingCss}</style>
+      <div className={printPreviewMode ? 'overflow-x-auto' : 'h-full'}>
       <div style={printPageStyle} className={printPreviewMode ? '' : 'h-full'}>
         {html ? (
           <div
-            className={`preview-content ${printPreviewMode ? 'print-preview-mode' : 'px-8 py-6'}`}
+            className={`preview-content ${printPreviewMode ? 'print-preview-mode' : 'px-4 py-4 sm:px-8 sm:py-6'}`}
             style={previewStyle}
             dangerouslySetInnerHTML={{ __html: html }}
           />
@@ -95,6 +96,7 @@ export default function Preview({ className = '' }: PreviewProps) {
             </p>
           </div>
         )}
+      </div>
       </div>
     </div>
   )

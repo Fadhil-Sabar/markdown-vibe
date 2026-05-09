@@ -56,9 +56,11 @@ export default function App() {
     setIsDirty,
     darkMode,
     viewMode,
+    setViewMode,
     splitRatio,
     setSplitRatio,
     settingsPanelOpen,
+    setSettingsPanelOpen,
     exportModalOpen,
   } = useAppStore()
 
@@ -76,6 +78,10 @@ export default function App() {
   useEffect(() => {
     const draft = loadDraft()
     const isFirstVisit = !localStorage.getItem(FIRST_VISIT_KEY)
+
+    if (window.innerWidth < 640) {
+      setViewMode('editor')
+    }
 
     if (draft && draft.content) {
       // Show banner offering to restore
@@ -217,8 +223,18 @@ export default function App() {
             </div>
           )}
 
-          {/* Settings panel slide-in */}
-          {settingsPanelOpen && <SettingsPanel />}
+            {/* Settings panel: overlay on mobile, inline on desktop */}
+          {settingsPanelOpen && (
+            <>
+              <div
+                className="fixed inset-0 bg-black/40 z-30 sm:hidden"
+                onClick={() => setSettingsPanelOpen(false)}
+              />
+              <div className="fixed inset-y-0 right-0 z-40 sm:relative sm:inset-auto sm:z-auto">
+                <SettingsPanel />
+              </div>
+            </>
+          )}
         </div>
 
         <StatusBar />
