@@ -1,7 +1,19 @@
 import { useRef, useEffect } from 'react'
 import { useMarkdownParser } from '../hooks/useMarkdownParser'
-import { useAppStore } from '../store/useAppStore'
+import { useAppStore, PageSize } from '../store/useAppStore'
 import '../styles/preview.css'
+
+/** Get page dimensions for print preview. Returns [width, height] in mm or in. */
+function getPageDimensions(size: PageSize, landscape: boolean): [string, string] {
+  const dims: Record<PageSize, [string, string]> = {
+    A4: ['210mm', '297mm'],
+    Letter: ['8.5in', '11in'],
+    Legal: ['8.5in', '14in'],
+    A5: ['148mm', '210mm'],
+  }
+  const [w, h] = dims[size]
+  return landscape ? [h, w] : [w, h]
+}
 
 interface PreviewProps {
   className?: string
@@ -24,6 +36,7 @@ export default function Preview({ className = '' }: PreviewProps) {
   }
 
   // In print-preview mode, simulate the page with margins
+  const [pageW, pageH] = getPageDimensions(typography.pageSize, typography.landscape)
   const printPageStyle: React.CSSProperties = printPreviewMode
     ? {
         paddingTop: `${typography.marginTop}mm`,
@@ -33,8 +46,8 @@ export default function Preview({ className = '' }: PreviewProps) {
         background: '#fff',
         color: '#000',
         boxShadow: '0 0 0 1px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.15)',
-        minHeight: typography.pageSize === 'A4' ? '297mm' : typography.pageSize === 'A5' ? '210mm' : '11in',
-        width: typography.pageSize === 'A4' ? '210mm' : typography.pageSize === 'A5' ? '148mm' : '8.5in',
+        minHeight: pageH,
+        width: pageW,
         maxWidth: '100%',
         margin: '0 auto',
         position: 'relative' as const,

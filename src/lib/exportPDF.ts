@@ -29,6 +29,7 @@ function buildPageRule(t: TypographySettings, options: PDFExportOptions): string
     A5: '148mm 210mm',
   }
   const size = pageSizes[t.pageSize] || '210mm 297mm'
+  const orientation = t.landscape ? ' landscape' : ''
   const margin = `${t.marginTop}mm ${t.marginRight}mm ${t.marginBottom}mm ${t.marginLeft}mm`
 
   let headerContent = options.headerText
@@ -45,7 +46,7 @@ function buildPageRule(t: TypographySettings, options: PDFExportOptions): string
 
   return `
     @page {
-      size: ${size};
+      size: ${size}${orientation};
       margin: ${margin};
       @top-center { content: ${headerContent}; font-size: 9pt; color: #666; }
       @bottom-center { content: ${footerContent}; font-size: 9pt; color: #666; }

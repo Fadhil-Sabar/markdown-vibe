@@ -69,7 +69,7 @@ export default function ExportPDFModal() {
           <div className="bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded-lg px-4 py-3 text-sm">
             <div className="font-medium">{suggestedName}.pdf</div>
             <div className="text-xs mt-0.5 text-indigo-500 dark:text-indigo-400">
-              {typography.pageSize} · {typography.marginTop}/{typography.marginRight}/{typography.marginBottom}/{typography.marginLeft}mm · {typography.customBodyFont || typography.bodyFont} {typography.fontSize}pt
+              {typography.pageSize} · {typography.landscape ? 'Landscape' : 'Portrait'} · {typography.marginTop}/{typography.marginRight}/{typography.marginBottom}/{typography.marginLeft}mm · {typography.customBodyFont || typography.bodyFont} {typography.fontSize}pt
             </div>
           </div>
 

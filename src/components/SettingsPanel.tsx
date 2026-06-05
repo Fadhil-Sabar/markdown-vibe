@@ -318,6 +318,29 @@ export default function SettingsPanel() {
               </div>
             </div>
 
+            {/* Orientation */}
+            <div className="space-y-1.5">
+              <FieldLabel>Orientation</FieldLabel>
+              <div className="grid grid-cols-2 gap-1">
+                {[
+                  { label: 'Portrait', value: false },
+                  { label: 'Landscape', value: true },
+                ].map(({ label, value }) => (
+                  <button
+                    key={label}
+                    onClick={() => setTypography({ landscape: value })}
+                    className={`py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                      typography.landscape === value
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-zinc-100 dark:bg-zinc-700/50 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Margin presets */}
             <div className="space-y-1.5">
               <FieldLabel>Margins</FieldLabel>
@@ -347,7 +370,9 @@ export default function SettingsPanel() {
                   onChange={(v) => setTypography({ marginLeft: v, marginPreset: 'custom' })} />
                 {/* Page thumbnail */}
                 <div
-                  className="w-10 h-14 rounded border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex-shrink-0"
+                  className={`rounded border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex-shrink-0 ${
+                    typography.landscape ? 'w-14 h-10' : 'w-10 h-14'
+                  }`}
                   style={{
                     boxShadow: `inset ${Math.max(2, typography.marginLeft / 8)}px ${Math.max(2, typography.marginTop / 8)}px 0 0 #e0e7ff,
                                 inset -${Math.max(2, typography.marginRight / 8)}px -${Math.max(2, typography.marginBottom / 8)}px 0 0 #e0e7ff`

@@ -21,6 +21,7 @@ export interface TypographySettings {
   marginLeft: number
   pageSize: PageSize
   previewDark: boolean
+  landscape: boolean
 }
 
 export interface AppState {
@@ -85,6 +86,7 @@ const defaultTypography: TypographySettings = {
   marginLeft: 25,
   pageSize: 'A4',
   previewDark: false,
+  landscape: false,
 }
 
 export const useAppStore = create<AppState>()(
